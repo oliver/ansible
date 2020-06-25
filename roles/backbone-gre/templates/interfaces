@@ -11,5 +11,6 @@ iface {{ ifname }} inet manual
   down ip link set down $IFACE
   up   batctl -m {{ batman_interface }} if add $IFACE
   down batctl -m {{ batman_interface }} if del $IFACE
+  up ip link set $IFACE mtu {{ hostvars[host].max_mtu }}
 
 {% endfor %}
